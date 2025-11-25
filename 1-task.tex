@@ -1,16 +1,22 @@
+% ============================================================================
+%  Task document: основной файл для компиляции документа "Задание на УИР/ВКР".
+% ============================================================================
 % arara: xelatex
 % arara: biber
 % arara: xelatex: { synctex: true }
 
 \documentclass[12pt,a4paper,oneside,final]{report}
 
+% --- Подключение шаблона ----------------------------------------------------
 \input{template/preamble/thesis-template-macro}
 
+% --- Подключение содержимого задания ---------------------------------------
 \input{content/1-main-content/1-task-content}
 
 \begin{document}
 \pagestyle{empty}
 
+% --- Титульный лист задания -------------------------------------------------
 \input{template/titles/1-task-title}
 
 \end{document}

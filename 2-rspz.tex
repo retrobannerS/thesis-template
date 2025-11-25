@@ -1,17 +1,28 @@
+% ============================================================================
+%  RSPZ document: основной файл для компиляции документа "Расширенное
+%  содержание пояснительной записки".
+% ============================================================================
 % arara: xelatex
 % arara: biber
 % arara: xelatex: { synctex: true }
 
 \documentclass[12pt,a4paper,oneside,final]{report}
 
+% --- Подключение шаблона ----------------------------------------------------
 \input{template/preamble/thesis-template-macro}
 
-\showannotationstrue % В РСПЗ мы показываем аннотации
+% --- Настройки для РСПЗ ------------------------------------------------------
+% В РСПЗ мы показываем аннотации разделов и подразделов
+\showannotationstrue
 
+% --- Подключение содержимого задания ---------------------------------------
+% Необходимо для включения листа задания в документ
 \input{content/1-main-content/1-task-content}
 
 \begin{document}
 
+% --- Титульный лист РСПЗ ----------------------------------------------------
+% Условная вставка: либо готовый PDF, либо LaTeX-верстка
 \ifusepdfRspzTitle
     \includepdf[pages={-}, offset=0mm -0mm]{\rspztitlepdf}
 \else
@@ -19,7 +30,8 @@
 \fi
 \newpage
 
-% Для листа задания, сверстанного в LaTeX
+% --- Лист задания -----------------------------------------------------------
+% Условная вставка: либо готовый PDF, либо LaTeX-верстка
 \ifusepdfTaskSheet
     \includepdf[pages={-}, offset=0mm -0mm]{\tasktitlepdf}
 \else
@@ -27,10 +39,13 @@
 \fi
 \newpage
 
+% --- Настройка нумерации страниц --------------------------------------------
 \pagestyle{plain}
 \pagenumbering{arabic}
 \setcounter{page}{2}
 
+% --- Основное содержимое документа -------------------------------------------
+% Используется отдельная refsection для изоляции библиографии РСПЗ
 \refsection
 
 \clearpage
@@ -61,6 +76,8 @@
 
 \input{content/1-main-content/8-conclusion}
 
+% --- Подсчет общих счетчиков для реферата -----------------------------------
+% Сохраняем значения счетчиков перед библиографией для использования в реферате
 \setcounter{totalfigures}{\the\value{totalfigures}+\the\value{figure}}
 \setcounter{figure}{0}
 \setcounter{totaltables}{\the\value{totaltables}+\the\value{table}}
@@ -68,6 +85,7 @@
 \setcounter{totallistings}{\the\value{totallistings}+\the\value{lstlisting}}
 \setcounter{lstlisting}{0}
 
+% Создаем метки для ссылок на общее количество фигур, таблиц и листингов
 \makeatletter
 \edef\@currentlabel{\the\value{totalfigures}}
 \label{figures}
@@ -77,8 +95,7 @@
 \label{listings}
 \makeatother
 
-% --- СЕКЦИЯ БИБЛИОГРАФИИ ---
-
+% --- Список использованной литературы ----------------------------------------
 \clearpage
 
 \input{content/1-main-content/9-bibliography}
@@ -87,9 +104,6 @@
 
 \label{end_of_main_text}
 
-%--- КОНЕЦ СЕКЦИИ БИБЛИОГРАФИИ ---
-
 \label{end_of_document}
-
 
 \end{document}

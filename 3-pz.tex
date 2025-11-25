@@ -1,18 +1,27 @@
+% ============================================================================
+%  PZ document: основной файл для компиляции документа "Пояснительная записка".
+% ============================================================================
 % arara: xelatex
 % arara: biber
 % arara: xelatex: { synctex: true }
 
 \documentclass[12pt,a4paper,oneside,final]{report}
 
+% --- Подключение шаблона ----------------------------------------------------
 \input{template/preamble/thesis-template-macro}
 
-% В ПЗ мы аннотации выключаются
+% --- Настройки для ПЗ --------------------------------------------------------
+% В ПЗ аннотации разделов и подразделов не показываются (в отличие от РСПЗ)
 \showannotationsfalse
 
+% --- Подключение содержимого задания ---------------------------------------
+% Необходимо для включения листа задания в документ
 \input{content/1-main-content/1-task-content}
 
 \begin{document}
 
+% --- Титульный лист ПЗ -------------------------------------------------------
+% Условная вставка: либо готовый PDF, либо LaTeX-верстка
 \ifusepdfPzTitle
     \includepdf[pages={-}, offset=0mm -0mm]{\pztitlepdf}
 \else
@@ -20,11 +29,15 @@
 \fi
 \newpage
 
-%\clearpage
-%% Тут включается лист с подписями для ВКР
-%\includepdf[pages={-}, offset=0mm -0mm]{3-titles/title-dep22.pdf}
-%\clearpage
+% --- Дополнительный лист с подписями для ВКР --------------------------------
+% Раскомментируйте, если требуется включить дополнительный лист с подписями
+% (например, для ВКР на кафедре 22)
+% \clearpage
+% \includepdf[pages={-}, offset=0mm -0mm]{3-titles/title-dep22.pdf}
+% \clearpage
 
+% --- Лист задания -----------------------------------------------------------
+% Условная вставка: либо готовый PDF, либо LaTeX-верстка
 \ifusepdfTaskSheet
     \includepdf[pages={-}, offset=0mm -0mm]{\tasktitlepdf}
 \else
@@ -32,29 +45,29 @@
 \fi
 \newpage
 
+% --- Настройка нумерации страниц --------------------------------------------
 \pagestyle{plain}
 \pagenumbering{arabic}
 \setcounter{page}{2}
 
+% --- Основное содержимое документа -------------------------------------------
+% Используется отдельная refsection для изоляции библиографии ПЗ
 \refsection
 
-%\clearpage
-%\thispagestyle{empty}
-
-%\vfill
-
-%\begin{center}
-%[Место для распечатки отчета Антиплагиата]
-%\end{center}
-
-%\newpage
-%\thispagestyle{empty}
-
-%\vfill
-
-%\begin{center}
-%[Место для распечатки отчета Антиплагиата]
-%\end{center}
+% --- Место для отчета Антиплагиата ------------------------------------------
+% Раскомментируйте, если требуется вставить страницы с отчетом Антиплагиата
+% \clearpage
+% \thispagestyle{empty}
+% \vfill
+% \begin{center}
+% [Место для распечатки отчета Антиплагиата]
+% \end{center}
+% \newpage
+% \thispagestyle{empty}
+% \vfill
+% \begin{center}
+% [Место для распечатки отчета Антиплагиата]
+% \end{center}
 
 \clearpage
 
@@ -84,6 +97,8 @@
 
 \input{content/1-main-content/8-conclusion}
 
+% --- Подсчет общих счетчиков для реферата -----------------------------------
+% Сохраняем значения счетчиков перед библиографией для использования в реферате
 \setcounter{totalfigures}{\the\value{totalfigures}+\the\value{figure}}
 \setcounter{figure}{0}
 \setcounter{totaltables}{\the\value{totaltables}+\the\value{table}}
@@ -91,6 +106,7 @@
 \setcounter{totallistings}{\the\value{totallistings}+\the\value{lstlisting}}
 \setcounter{lstlisting}{0}
 
+% Создаем метки для ссылок на общее количество фигур, таблиц и листингов
 \makeatletter
 \edef\@currentlabel{\the\value{totalfigures}}
 \label{figures}
@@ -100,8 +116,7 @@
 \label{listings}
 \makeatother
 
-% --- СЕКЦИЯ БИБЛИОГРАФИИ ---
-
+% --- Список использованной литературы ----------------------------------------
 \clearpage
 
 \input{content/1-main-content/9-bibliography}
@@ -110,8 +125,7 @@
 
 \label{end_of_main_text}
 
-%--- КОНЕЦ СЕКЦИИ БИБЛИОГРАФИИ ---
-%--- СЕКЦИЯ ПРИЛОЖЕНИЙ ---
+% --- Приложения --------------------------------------------------------------
 \clearpage
 \label{sec:appendices}
 
@@ -119,7 +133,9 @@
     \chapter*{Приложения}
     \addcontentsline{toc}{chapter}{Приложения}
 
-    % Изменяем поведение частей, разделов, подразделов для корректного попадания в TOC
+    % --- Переопределение команд для приложений -------------------------------
+    % Изменяем поведение глав, разделов и подразделов для корректного
+    % попадания в оглавление и нумерации приложений буквами
     \let\oldchapter\chapter
     \renewcommand{\thechapter}{\Asbuk{chapter}}
     \renewcommand{\chapter}[1]{%
@@ -140,23 +156,24 @@
         \oldsubsection*{\thesubsection~#1}
     }
 
+    % --- Отключение переноса первого приложения ------------------------------
     % Первое приложение не переносится на новую страницу
     \makeatletter
     \let\oldclearpage\clearpage
     \let\clearpage\relax
     \makeatother
+
+    % Подключение всех приложений
     \input{content/2-appendices/_all-appendices}
 
-    % Восстанавливаем все как было
+    % --- Восстановление стандартного поведения ------------------------------
+    % Восстанавливаем все команды как было до переопределения
     \let\chapter\oldchapter
     \let\section\oldsection
     \let\subsection\oldsubsection
 \end{appendices}
 
-%--- КОНЕЦ СЕКЦИИ ПРИЛОЖЕНИЙ ---
-
 \label{end_of_document}
-
 
 \end{document}
 

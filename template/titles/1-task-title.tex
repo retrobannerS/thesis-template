@@ -1,8 +1,15 @@
+% ============================================================================
+%  Task title page: титульный лист документа "Задание на УИР/ВКР".
+% ============================================================================
+% Содержит шапку, тему работы, таблицу с заданиями, список литературы
+% и блок утверждения с подписями руководителя и студента.
+
 \input{template/titles/0-blank-header}
 
 
+% --- Заголовок документа ----------------------------------------------------
 \begin{center}
-    {\Large{\textbf{Задание на \theprojecttypeshort}}}\\
+    {\Large{\textbf{Задание на \theprojecttypeshort}}}
 
     \large
 
@@ -10,10 +17,11 @@
 \end{center}
 
 
+% --- Тема работы ------------------------------------------------------------
 \begin{center}
-    \uppercase{\textbf{\large{}Тема \theprojecttypeshort}}\\
+    \uppercase{\textbf{\large{}Тема \theprojecttypeshort}}
 
-    {\Large\thetitle}\\
+    {\Large\thetitle}
 
     \vskip 1em
 
@@ -21,6 +29,7 @@
 \end{center}
 
 
+% --- Таблица с заданиями ----------------------------------------------------
 \begin{xltabular}{\linewidth}{|p{0.7cm}|X|>{\footnotesize\centering\arraybackslash}p{2cm}|>{\footnotesize\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2.2cm}|}
     \hline
     \multicolumn{1}{|>{\centering\arraybackslash}p{0.7cm}|}{№\par п/п}
@@ -33,6 +42,9 @@
 \end{xltabular}
 
 
+% --- Список литературы ------------------------------------------------------
+% Используется отдельная refsection для изоляции библиографии задания
+% от библиографии основного документа
 \refsection
 \thetaskliterature
 \begin{center}
@@ -43,6 +55,7 @@
 \endrefsection
 
 
+% --- Блок утверждения задания -----------------------------------------------
 \vfill
 
 \begin{table}[!h]
