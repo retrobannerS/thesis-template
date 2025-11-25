@@ -1,0 +1,48 @@
+% ============================================================================
+%  Language & fonts module: настраивает языки документа и наборы шрифтов.
+%  Все параметры сгруппированы, чтобы легко включать/отключать нужные опции.
+% ============================================================================
+
+% --- Базовые языки -----------------------------------------------------------
+\setmainlanguage[numerals=cyrillic]{russian}
+\setotherlanguages{english}
+
+% --- Совместимость кодировок -------------------------------------------------
+% Ниже — отключённые совместимые пакеты. Включайте их только если требуется
+% поддержка нестандартных символов в старых документах.
+%\usepackage{xunicode} % some extra unicode support
+%\usepackage[utf8x]{inputenc}
+
+\defaultfontfeatures{Ligatures=TeX}
+
+% --- Наборы шрифтов ----------------------------------------------------------
+% Настройка шрифтов для основного текста, без засечек и моноширинного.
+% По умолчанию используются:
+%   - Times New Roman      — основной текст (с засечками)
+%   - Arial                — без засечек (например, заголовки)
+%   - Courier New          — моноширинный текст (код, примеры)
+%
+% Чтобы изменить стиль документа — раскомментируйте пример ниже и укажите
+% свои шрифты (установленные в системе). Например:
+%
+% \setmainfont{Liberation Serif}    % основной текст (с засечками)
+% \setsansfont{Liberation Sans}     % без засечек
+% \setmonofont{PT Mono}             % моноширинный
+%
+% Для кастомизации, замените имена шрифтов на желаемые, либо добавьте опции,
+% например:
+%   \setmainfont[Ligatures=TeX, BoldFont={Liberation Serif Bold}]{Liberation Serif}
+%
+% Документация: https://ctan.org/pkg/fontspec
+% --------------------------------------------------------------------------
+
+\newfontfamily\cyrillicfont{Times New Roman}
+\newfontfamily\cyrillicfontsf{Arial}
+\newfontfamily\cyrillicfonttt{Courier New}
+
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+\newfontfamily\englishfont[Script=Latin, Contextuals={WordInitial,WordFinal}]{Times New Roman}
+\setotherlanguage[Numerals=Latin]{english}

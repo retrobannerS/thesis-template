@@ -1,0 +1,70 @@
+% ============================================================================
+%  Project macros module: содержит все пользовательские макросы с данными
+%  проекта (типы работ, участники, утверждения и т.д.), а также служебные
+%  счётчики для нумерации задач.
+% ============================================================================
+
+% --- Общие сведения о проекте -----------------------------------------------
+\makeatletter
+\newcommand*{\projecttypefulldative}[1]{\gdef\@projecttypefulldative{#1}}
+\newcommand*{\theprojecttypefulldative}{\@projecttypefulldative}
+\newcommand*{\projecttypeshort}[1]{\gdef\@projecttypeshort{#1}}
+\newcommand*{\theprojecttypeshort}{\@projecttypeshort}
+\newcommand*{\authorfulldative}[1]{\gdef\@authorfulldative{#1}}
+\newcommand*{\theauthorfulldative}{\@authorfulldative}
+\newcommand*{\authorgroup}[1]{\gdef\@authorgroup{#1}}
+\newcommand*{\theauthorgroup}{\@authorgroup}
+
+% --- Руководители и консультанты --------------------------------------------
+\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
+\newcommand*{\thesupervisor}{\@supervisor}
+\newcommand*{\consultant}[1]{\gdef\@consultant{#1}}
+\newcommand*{\theconsultant}{\@consultant}
+
+% --- Задания и литература ----------------------------------------------------
+\newcommand{\projecttasks}[1]{\gdef\@projecttasks{#1}}
+\newcommand{\theprojecttasks}{\@projecttasks}
+\newcommand{\projecttask}[5]{#1 & #2 & #3 & #4 & #5 \\\hline}
+\newcommand*{\taskliterature}[1]{\gdef\@taskliterature{#1}}
+\newcommand*{\thetaskliterature}{\@taskliterature}
+
+% --- Сроки и утверждения по заданию -----------------------------------------
+\newcommand*{\taskdate}[1]{\gdef\@taskdate{#1}}
+\newcommand*{\thetaskdate}{\@taskdate}
+\newcommand*{\supervisortaskapproval}[1]{\gdef\@supervisortaskapproval{#1}}
+\newcommand*{\thesupervisortaskapproval}{\@supervisortaskapproval}
+\newcommand*{\authortaskapproval}[1]{\gdef\@authortaskapproval{#1}}
+\newcommand*{\theauthortaskapproval}{\@authortaskapproval}
+
+% --- Утверждения для РСПЗ ----------------------------------------------------
+\newcommand*{\authorrspzapproval}[1]{\gdef\@authorrspzapproval{#1}}
+\newcommand*{\theauthorrspzapproval}{\@authorrspzapproval}
+\newcommand*{\supervisorrspzapproval}[1]{\gdef\@supervisorrspzapproval{#1}}
+\newcommand*{\thesupervisorrspzapproval}{\@supervisorrspzapproval}
+\newcommand*{\consultantrspzapproval}[1]{\gdef\@consultantrspzapproval{#1}}
+\newcommand*{\theconsultantrspzapproval}{\@consultantrspzapproval}
+\newcommand*{\supervisorrspzgrade}[1]{\gdef\@supervisorrspzgrade{#1}}
+\newcommand*{\thesupervisorrspzgrade}{\@supervisorrspzgrade}
+\newcommand*{\consultantrspzgrade}[1]{\gdef\@consultantrspzgrade{#1}}
+\newcommand*{\theconsultantrspzgrade}{\@consultantrspzgrade}
+
+% --- Утверждения для ПЗ ------------------------------------------------------
+\newcommand*{\authorpzapproval}[1]{\gdef\@authorpzapproval{#1}}
+\newcommand*{\theauthorpzapproval}{\@authorpzapproval}
+\newcommand*{\supervisorpzapproval}[1]{\gdef\@supervisorpzapproval{#1}}
+\newcommand*{\thesupervisorpzapproval}{\@supervisorpzapproval}
+\newcommand*{\consultantpzapproval}[1]{\gdef\@consultantpzapproval{#1}}
+\newcommand*{\theconsultantpzapproval}{\@consultantpzapproval}
+\newcommand*{\supervisorpzgrade}[1]{\gdef\@supervisorpzgrade{#1}}
+\newcommand*{\thesupervisorpzgrade}{\@supervisorpzgrade}
+\newcommand*{\consultantpzgrade}[1]{\gdef\@consultantpzgrade{#1}}
+\newcommand*{\theconsultantpzgrade}{\@consultantpzgrade}
+\makeatother
+
+% --- Счётчики задач ----------------------------------------------------------
+\newcounter{projecttasknumber}
+\newcommand{\projecttasknum}{\setcounter{projectsubtasknumber}{0}\stepcounter{projecttasknumber}\theprojecttasknumber.}
+
+\newcounter{projectsubtasknumber}
+\newcommand{\projectsubtasknum}{\stepcounter{projectsubtasknumber}\theprojecttasknumber.\theprojectsubtasknumber.}
+

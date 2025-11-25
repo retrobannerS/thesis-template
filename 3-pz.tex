@@ -1,0 +1,38 @@
+% arara: xelatex
+% arara: biber
+% arara: xelatex: { synctex: true }
+
+\documentclass[12pt,a4paper,oneside,final]{report}
+
+\input{template/preamble/thesis-template-macro}
+
+% В ПЗ мы аннотации выключаются
+\showannotationsfalse
+
+\addto{\captionsrussian}{\renewcommand{\bibname}{Список литературы}}
+
+\begin{document}
+
+% Для титульного листа, сверстанного в LaTeX
+\input{template/titles/3-pz-title}
+\newpage
+
+% Для вставки бланка титульного листа из PDF-файла
+% \includepdf[pages={-}, offset=0mm -0mm]{template/titles/title.pdf}
+
+%\clearpage
+%% Тут включается лист с подписями для ВКР
+%\includepdf[pages={-}, offset=0mm -0mm]{3-titles/title-dep22.pdf}
+%\clearpage
+
+% Для листа задания, сверстанного в LaTeX
+\input{template/titles/1-task-title}
+\newpage
+
+% Для вставки бланка задания из PDF-файла
+% \includepdf[pages={-}, offset=0mm -0mm]{title/task.pdf}
+
+\input{template/layout/full-content}
+
+\end{document}
+

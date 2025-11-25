@@ -1,0 +1,37 @@
+% ============================================================================
+%  Signatures module: отвечает за возможность автоматического добавления подписей, дат и
+%  пустых полей в формах согласования.
+% ============================================================================
+
+% --- Конфигурация параметров подписи ----------------------------------------
+\makeatletter
+\pgfkeys{
+    /signat/.is family, /signat,
+    xsign/.initial=-10pt,
+    ysign/.initial=4pt,
+    scale/.initial=0.3,
+    img/.initial=supervisor,
+    xdate/.initial=10pt,
+    ydate/.initial=-10pt,
+    date/.initial=01.01.2001
+}
+\makeatother
+
+% --- Макросы для вставки подписи --------------------------------------------
+\providecommand{\signaturepath}{assets/signatures/}
+\newcommand{\sign}[3][0pt]{%
+    \tikz[overlay]{\node[yshift=#1]{\includegraphics[scale=#2]{\signaturepath#3.png}}}%
+}
+\NewDocumentCommand{\signat}{O{}}{%
+    \pgfkeys{/signat, #1}%
+    \begin{tikzpicture}[overlay]
+        \node[xshift=\pgfkeysvalueof{/signat/xsign}, yshift=\pgfkeysvalueof{/signat/ysign}](c)
+        {\includegraphics[scale=\pgfkeysvalueof{/signat/scale}]{\signaturepath\pgfkeysvalueof{/signat/img}.png}};
+        \node[xshift=\pgfkeysvalueof{/signat/xdate}, yshift=\pgfkeysvalueof{/signat/ydate}]
+        {\small\textit{\pgfkeysvalueof{/signat/date}}};
+    \end{tikzpicture}
+}
+
+% --- Пустые линии для подписи ------------------------------------------------
+\NewDocumentCommand{\emptyfield}{O{0}O{5}}{%
+\tikz[overlay]{\draw[thin,yshift=-1.28ex](#1,0)--(#2,0);}}

@@ -1,0 +1,53 @@
+% ============================================================================
+%  Packages module: подключает все используемые библиотеки, сгруппированные
+%  по задачам (основные настройки документа, верстка таблиц/рисунков и т.д.).
+%  Здесь нет логики конфигурации — только \usepackage.
+% ============================================================================
+
+% --- Базовые возможности документа ------------------------------------------
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\usepackage{polyglossia}
+\usepackage{csquotes}
+\usepackage{xltxtra} % \XeLaTeX macro
+\usepackage{fontspec}
+
+\usepackage{fancyhdr}
+\usepackage[a4paper,left=30mm,right=15mm,top=20mm,bottom=20mm,bindingoffset=0cm]{geometry}%
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{comment}
+
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{pdfpages}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{indentfirst}
+\usepackage[unicode=true]{hyperref}
+\usepackage{color}
+\usepackage{pgf}
+\usepackage{titling}
+\usepackage{totcount}
+
+% --- Работа со списками, заголовками и приложениями --------------------------
+\usepackage{paralist}
+\usepackage[singlelinecheck=false,labelsep=endash]{caption}
+\usepackage{titlesec}
+\usepackage{appendix}
+
+% --- Дополнительные утилиты --------------------------------------------------
+\usepackage{mathpartir}
+\usepackage{tikz}
+\usepackage{hhline}
+\usepackage{listings}
+
+% --- Локализация -------------------------------------------------------------
+\usepackage{template/preamble/localizations}
+

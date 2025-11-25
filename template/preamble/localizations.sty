@@ -1,0 +1,41 @@
+% ============================================================================
+%  Theorems & Localization package: собирает определение математических
+%  окружений (теоремы, доказательства, аннотации) и локализацию стандартных
+%  подписей/разделов. Подключается через template/preamble/packages.tex.
+% ============================================================================
+\ProvidesPackage{template/preamble/localizations}
+
+% --- Базовые зависимости -----------------------------------------------------
+\RequirePackage{amssymb}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+
+% --- Определения теорем и доказательства ------------------------------------
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+\newtheorem{proposition}{Утверждение}
+\newtheorem{remark}{Замечание}
+\newtheorem{corollary}{Следствие}
+\renewcommand{\proofname}{Доказательство}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+
+% --- Аннотации ---------------------------------------------------------------
+\newif\ifshowannotations
+\AtBeginDocument{
+  \ifshowannotations
+    \theoremstyle{plain}
+    \newtheorem*{annotation}{Аннотация}
+  \else
+    \excludecomment{annotation}
+  \fi
+}
+
+% --- Локализация подписей -----------------------------------------------------
+\addto\captionsrussian{%
+  \renewcommand{\contentsname}{Содержание}
+  \renewcommand{\appendixname}{Приложение}
+}
+\renewcommand{\lstlistingname}{Листинг}

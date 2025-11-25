@@ -1,0 +1,86 @@
+% ============================================================================
+%  Formatting module: здесь собраны все правила визуального оформления текста.
+%  Структура файла повторяет основные сущности ГОСТ/университетских требований,
+%  чтобы можно было быстро найти нужный блок и настроить его.
+% ============================================================================
+
+% --- Макет страницы и колонтитулы --------------------------------------------
+% Управляет стилями страниц, включая выравнивание шапок и подвалов.
+\makeatletter
+\let\ps@plain\ps@fancy % Подчиняем первые страницы каждой главы общим правилам
+\makeatother
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\baselinestretch}{1.5}
+\newcommand{\headertext}[1]{\fancyhead[R]{\tiny{#1}}}
+
+% --- Заголовки ---------------------------------------------------------------
+% Заголовки отдельных уровней оформлены так, чтобы соответствовать нормам ПЗ:
+% главы — центрированы и жирные, остальные уровни — выровнены по левому краю.
+\titleformat{\chapter}[block]{\centering\normalfont\Large\bfseries}{\thechapter.}{1ex}{}{}
+\titlespacing{\chapter}{0pt}{0em}{2em}
+
+\titleformat{\section}[block]{\normalfont\large\bfseries}{\thesection}{1ex}{}{}
+\titlespacing{\section}{0pt}{0em}{1ex}
+
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries}{\thesubsection}{1ex}{}{}
+\titlespacing{\section}{0pt}{0em}{1ex}
+
+% paragraph и subparagraph — в тексте, без отступов
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{0pt}{}{}
+\titlespacing{\paragraph}{0pt}{0em}{0ex}
+
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\bfseries}{\thesubparagraph}{0pt}{}{}
+\titlespacing{\subparagraph}{0pt}{0em}{0ex}
+
+% --- Списки ------------------------------------------------------------------
+% Компактные списки без лишних вертикальных отступов; стиль нумерации — 1., 1.1.
+\setdefaultenum{1.}{1.}{1.}{1.}
+\setdefaultitem{--}{}{}{}
+% При необходимости более плотных списков можно раскомментировать строку ниже.
+%\setlength\itemsep{-1em}
+\let\itemize\compactitem
+\let\enditemize\endcompactitem
+\let\enumerate\compactenum
+\let\endenumerate\endcompactenum
+\let\description\compactdesc
+\let\enddescription\endcompactdesc
+\pltopsep=\smallskipamount
+\plitemsep=0pt
+\plparsep=0pt
+
+% Команда для отмены разрыва страниц перед списками
+\makeatletter
+\newcommand\mynobreakpar{\par\nobreak\@afterheading}
+\makeatother
+
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\theenumii}{\arabic{enumii}}
+\renewcommand{\theenumiii}{\arabic{enumiii}}
+\renewcommand{\theenumiv}{\arabic{enumiv}}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumi.\theenumii.}
+\renewcommand{\labelenumiii}{\theenumi.\theenumii.\theenumiii.}
+\renewcommand{\labelenumiv}{\theenumi.\theenumii.\theenumiii.\theenumiv.}
+
+% --- Сноски ------------------------------------------------------------------
+% Высокое значение interfootnotelinepenalty предотвращает разрывы сносок.
+\interfootnotelinepenalty=10000 % стараемся не рвать сноски на страницах
+
+% --- Подписи к рисункам и таблицам ------------------------------------------
+% Подписи выравниваются по ширине и используют единообразные параметры ГОСТ.
+\captionsetup[table]{justification=justified}
+\captionsetup[figure]{justification=justified,name=Рисунок,singlelinecheck=on,font=onehalfspacing}
+
+% --- Список литературы -------------------------------------------------------
+% Настройка стиля оформление ссылок + подключение пользовательских .bib файлов.
+\usepackage[
+  style=gost-numeric,
+  sorting=none,
+  language=auto,
+  autolang=other
+]{biblatex}

@@ -1,0 +1,44 @@
+% arara: xelatex
+% arara: biber
+% arara: xelatex: { synctex: true }
+
+\documentclass[12pt,a4paper,oneside,final]{report}
+
+\input{template/preamble/thesis-template-macro}
+
+% В РСПЗ мы показываем аннотации
+\showannotationstrue
+
+\addto{\captionsrussian}{\renewcommand{\bibname}{Список литературы}}
+
+% ## Оценка руководителя за РСПЗ
+\supervisorrspzgrade{\emptyfield[0,-1.28ex]}%
+\consultantrspzgrade{}
+
+% ## Утверждение РСПЗ руководителем, студентом и консультантом
+\authorrspzapproval{
+  \sign[14pt]{.20}{PetechkinVP}
+}
+\supervisorrspzapproval{
+  \sign[12pt]{.15}{ManilovAV}
+}
+\consultantrspzapproval{}
+
+\begin{document}
+
+\input{template/titles/2-rspz-title}
+\newpage
+
+% Для вставки бланка титульного листа из PDF-файла
+% \includepdf[pages={-}, offset=0mm -0mm]{template/titles/2-rspz-title.pdf}
+
+% Для листа задания, сверстанного в LaTeX
+\input{template/titles/1-task-title}
+\newpage
+
+% Для вставки бланка задания из PDF-файла
+% \includepdf[pages={-}, offset=0mm -0mm]{template/titles/1-task-title-task.pdf}
+
+\input{template/layout/full-content}
+
+\end{document}
