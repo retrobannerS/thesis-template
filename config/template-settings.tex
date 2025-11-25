@@ -9,6 +9,24 @@
 % Каталог с изображениями подписей; PNG без расширения и с одинаковым DPI.
 \renewcommand{\signaturepath}{/config/assets/signatures/}
 
+% --- Управление титульными листами ------------------------------------------
+% Переключение между LaTeX-версткой и вставкой готового PDF.
+
+% Раскомментируйте, если нужно использовать LaTeX-верстку титульных листов
+\usepdfTaskSheetfalse
+\usepdfRspzTitlefalse
+\usepdfPzTitlefalse
+
+% Раскомментируйте, если нужно использовать готовые PDF в качестве титульных листов
+% \usepdfTaskSheettrue
+% \usepdfRspzTitletrue
+% \usepdfPzTitletrue
+
+% Путь к готовым PDF титульных листов
+\newcommand{\tasktitlepdf}{config/assets/titles/1-task-title.pdf}
+\newcommand{\rspztitlepdf}{config/assets/titles/2-rspz-title.pdf}
+\newcommand{\pztitlepdf}{config/assets/titles/3-pz-title.pdf}
+
 
 % --- Библиография -----------------------------------------------------------
 % Подключайте один или несколько .bib файлов; порядок команд влияет на приоритет.
