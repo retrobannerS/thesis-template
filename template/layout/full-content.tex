@@ -24,31 +24,31 @@
 
 \clearpage
 
-\input{content/sections/02-abstract}
+\input{content/1-main-content/2-abstract}
 
 \clearpage
 
-\tableofcontents{}
+\input{content/1-main-content/3-toc}
 
 \clearpage
 
-\input{content/sections/03-intro}
+\input{content/1-main-content/4-intro}
 
 \clearpage
 
-\input{content/sections/04-chapter-1}
+\input{content/1-main-content/5-chapter-1}
 
 \clearpage
 
-\input{content/sections/05-chapter-2}
+\input{content/1-main-content/6-chapter-2}
 
 \clearpage
 
-\input{content/sections/06-chapter-3}
+\input{content/1-main-content/7-chapter-3}
 
 \clearpage
 
-\input{content/sections/08-conclusion}
+\input{content/1-main-content/8-conclusion}
 
 \setcounter{totalfigures}{\the\value{totalfigures}+\the\value{figure}}
 \setcounter{figure}{0}
@@ -70,7 +70,7 @@
 
 \clearpage
 
-\input{references/bibliography}
+\input{content/1-main-content/9-bibliography}
 
 \endrefsection
 
@@ -111,7 +111,7 @@
     \let\oldclearpage\clearpage
     \let\clearpage\relax
     \makeatother
-    \input{content/appendices/10-appendices}
+    \input{content/2-appendices/_all-appendices}
 
     % Восстанавливаем все как было
     \let\chapter\oldchapter
