@@ -25,6 +25,69 @@
 % Для вставки бланка задания из PDF-файла
 % \includepdf[pages={-}, offset=0mm -0mm]{template/titles/1-task-title-task.pdf}
 
-\input{template/layout/full-content}
+\pagestyle{plain}
+\pagenumbering{arabic}
+\setcounter{page}{2}
+
+\refsection
+
+\clearpage
+
+\input{content/1-main-content/2-abstract}
+
+\clearpage
+
+\input{content/1-main-content/3-toc}
+
+\clearpage
+
+\input{content/1-main-content/4-intro}
+
+\clearpage
+
+\input{content/1-main-content/5-chapter-1}
+
+\clearpage
+
+\input{content/1-main-content/6-chapter-2}
+
+\clearpage
+
+\input{content/1-main-content/7-chapter-3}
+
+\clearpage
+
+\input{content/1-main-content/8-conclusion}
+
+\setcounter{totalfigures}{\the\value{totalfigures}+\the\value{figure}}
+\setcounter{figure}{0}
+\setcounter{totaltables}{\the\value{totaltables}+\the\value{table}}
+\setcounter{table}{0}
+\setcounter{totallistings}{\the\value{totallistings}+\the\value{lstlisting}}
+\setcounter{lstlisting}{0}
+
+\makeatletter
+\edef\@currentlabel{\the\value{totalfigures}}
+\label{figures}
+\edef\@currentlabel{\the\value{totaltables}}
+\label{tables}
+\edef\@currentlabel{\the\value{totallistings}}
+\label{listings}
+\makeatother
+
+% --- СЕКЦИЯ БИБЛИОГРАФИИ ---
+
+\clearpage
+
+\input{content/1-main-content/9-bibliography}
+
+\endrefsection
+
+\label{end_of_main_text}
+
+%--- КОНЕЦ СЕКЦИИ БИБЛИОГРАФИИ ---
+
+\label{end_of_document}
+
 
 \end{document}
