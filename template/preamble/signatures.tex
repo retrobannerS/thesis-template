@@ -31,7 +31,3 @@
         {\small\textit{\pgfkeysvalueof{/signat/date}}};
     \end{tikzpicture}
 }
-
-% --- Пустые линии для подписи ------------------------------------------------
-\NewDocumentCommand{\emptyfield}{O{0}O{5}}{%
-\tikz[overlay]{\draw[thin,yshift=-1.28ex](#1,0)--(#2,0);}}
